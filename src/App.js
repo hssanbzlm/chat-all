@@ -4,9 +4,11 @@ import UserProvider from "./providers/UserProvider";
 
 function App() {
   return (
-    <UserProvider>
-      <Auth />;
-    </UserProvider>
+    <div className="App">
+      <UserProvider>
+        <Auth />;
+      </UserProvider>
+    </div>
   );
 }
 
