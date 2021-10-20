@@ -1,9 +1,16 @@
 import React from "react";
 import "./User.css";
 
-function User({ displayName, photoURL }) {
+function User({ displayName, photoURL, uid, handleUserClick }) {
+  const onClickUser = () => {
+    handleUserClick({ displayName, photoURL, uid });
+  };
   return (
-    <div className="user-container">
+    <div
+      className="user-container"
+      style={{ cursor: "pointer" }}
+      onClick={onClickUser}
+    >
       <div>{displayName}</div>
       <img
         style={{ borderRadius: "50%" }}

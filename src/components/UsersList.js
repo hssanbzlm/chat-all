@@ -1,23 +1,17 @@
 import React from "react";
+import { useContext } from "react/cjs/react.development";
+import { UsersListContext } from "../providers/UsersListProvider";
 import User from "./User";
 import "./UsersList.css";
-function UsersList() {
-  const arr = [
-    {
-      displayName: "hssan",
-      photoURL: "https://via.placeholder.com/150",
-      uid: "aeezk",
-    },
-    {
-      displayName: "KARIM",
-      photoURL: "https://via.placeholder.com/150",
-      uid: "ksjdf",
-    },
-  ];
+function UsersList({ handleUserClick }) {
+  const users = useContext(UsersListContext);
 
   return (
     <div className="users-list">
-      {arr.length > 0 && arr.map((v) => <User key={v.uid} {...v} />)}
+      {users &&
+        users.map((v) => (
+          <User key={v.uid} {...v} handleUserClick={handleUserClick} />
+        ))}
     </div>
   );
 }
