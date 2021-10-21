@@ -23,6 +23,8 @@ function UsersListProvider({ children }) {
     if (currentUser.uid) {
       getUsers();
     }
+
+    return () => unsubscribeFromFireStore.current;
   }, [currentUser.uid]);
 
   return (
