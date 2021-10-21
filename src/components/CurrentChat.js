@@ -17,7 +17,7 @@ function CurrentChat({ displayName, uid }) {
       date: Date.now(),
     };
     firestore.collection("messages").add(msg);
-    if (msg.idSender === user.uid) setMessages((prev) => [...prev, msg]);
+    if (msg.idSender === user.uid) setMessages((prev) => [...prev, msg]); // we add current user messages directly to state
     setContent("");
   };
 

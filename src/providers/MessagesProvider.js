@@ -16,10 +16,10 @@ function MessagesProvider({ children, chatWithuserId }) {
         .where("idReceiver", "==", user.uid)
         .where("idSender", "==", chatWithuserId)
         .onSnapshot((snapshot) => {
-          const first = snapshot.docs.map((v) => v.data());
+          const receivedMessages = snapshot.docs.map((v) => v.data());
           setMessages((prev) => [
-            ...prev.filter((v) => v.idReceiver !== user.uid),
-            ...first,
+            ...prev.filter((v) => v.idSender === user.uid), //leave only messages sent by current user to avoid duplication
+            ...receivedMessages,
           ]);
         });
     }
