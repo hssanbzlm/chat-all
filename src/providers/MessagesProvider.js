@@ -10,7 +10,8 @@ function MessagesProvider({ children, chatWithuserId }) {
   const [messages, setMessages] = useState([]);
   let unsubscribeFromFirstMessages = useRef(null);
   useEffect(() => {
-    async function getFirstMessages() {
+    setMessages([]);
+    async function getMessages() {
       unsubscribeFromFirstMessages.current = await firestore
         .collection("messages")
         .where("idReceiver", "==", user.uid)
@@ -24,7 +25,7 @@ function MessagesProvider({ children, chatWithuserId }) {
         });
     }
     if (user.uid && chatWithuserId) {
-      getFirstMessages();
+      getMessages();
     }
     return () => unsubscribeFromFirstMessages.current;
   }, [user.uid, chatWithuserId]);
